@@ -56,6 +56,8 @@ int main(int argc, char *argv[]) {
   if (newsock_file_descriptor < 0)
     error("Error on accept!");
 
+  std::cout << "Connection Successdul!" << std::endl;
+
   size_t n = read(newsock_file_descriptor, buffer, sizeof(buffer) - 1);
   // n < 0 = read failed
   // n == 0 = client disconnected
@@ -69,8 +71,8 @@ int main(int argc, char *argv[]) {
     std::cout << "Recieved " << n << " bytes: " << client_message << std::endl;
   }
 
-  const char* message = "Message Received";
-  n = write(newsock_file_descriptor, message, sizeof(message));
+  std::string message = "Message Received";
+  n = write(newsock_file_descriptor, message.c_str(), sizeof(message));
 
   if (n < 0) {
     error("Error writing to socket!");
