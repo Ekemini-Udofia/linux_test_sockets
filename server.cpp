@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
 
   if (sock_file_descriptor < 0)
     error("Error opening socket!");
+  std::cout << "Socket opened!" << std::endl;
   
   // bzero((char*) &serv_addr, sizeof(serv_addr));  /* This is useless now because initializing serv_addr{} with the {} sets all the memory to zero */
 
@@ -42,6 +43,9 @@ int main(int argc, char *argv[]) {
 
   if (bind(sock_file_descriptor, (sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
     error("Error on binding!");
+  
+  
+  std::cout << "Listening for connections..." << std::endl;
   
   listen(sock_file_descriptor, 5); // 5 is the number of socket connections that will be accepted
 
